@@ -1,1 +1,1 @@
-My name is Chara Kakraba-Ampeh. I am a first year student at Drexel University majoring in Software Engineering. . I like to listen to music in my free time. Currently, I am creating a To-Do-List Website for my CI102/103 project.
+My name is Chara Kakraba-Ampeh. I am a first year student at Drexel University majoring in Software Engineering. I am am currently creating a To-Do List web app for my CI102/103 group project.
