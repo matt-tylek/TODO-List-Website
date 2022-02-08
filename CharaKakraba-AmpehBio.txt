@@ -1,1 +1,0 @@
-My name is Chara Kakraba-Ampeh. I am a first So year student at Drexel University majoring in Software Engineering. I am currently creating a To-Do List web app for my CI102/103 project. 
