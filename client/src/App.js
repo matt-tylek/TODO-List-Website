@@ -1,7 +1,8 @@
 import React from "react";
-import logo from "./logo.svg";
+//import logo from "./logo.svg";
 import "./App.css";
 import Task from "./Components/Task";
+import Template from './Components/Template';
 
 function App() {
   const [data, setData] = React.useState(null);
@@ -15,8 +16,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
+      <Template />
+        {/*<img src={logo} className="App-logo" alt="logo" />*/}
+        {/*<p>{!data ? "Loading..." : data}</p>*/}
         <Task name="Test Checkbox" checked="false"></Task>
       </header>
     </div>
