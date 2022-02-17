@@ -7,10 +7,10 @@ class Task extends React.Component {
 	}
 	render() {
 		return (
-			<div>
+			<li>
 				<input type="checkbox" checked={this.props.checked}></input>
 				<span>{this.props.name}</span>
-			</div>
+			</li>
 		)
 	}
 }
