@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import "./Components/Menubar.js";
 import NavbarPage from "./Components/Menubar";
