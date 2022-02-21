@@ -1,12 +1,29 @@
+//<<<<<<< HEAD
 //import React from "react";
 //import logo from "./logo.svg";
+//=======
+import React from "react";
+//>>>>>>> refs/remotes/origin/main
 import "./App.css";
-import Task from "./Components/Task";
-import Template from './Components/Template';
+//import "./Components/Menubar.js";
+//import NavbarPage from "./Components/Menubar";
+import TaskList from "./Components/TaskList";
+import Template from "./Components/Template";
+
+/*
+var templateTasks = [
+  {name: "Task 1", checked: false},
+  {name: "Take out laundry", checked: false},
+  {name: "not do anythin", checked: true}
+]*/
 
 function App() {
   /*
   const [data, setData] = React.useState(null);
+
+  //if you want to append an item, you have to do the following
+  // setTasks(tasks.concat(new item))
+  const [tasks, setTasks] = React.useState(templateTasks)
 
   React.useEffect(() => {
     fetch("/api")
@@ -17,10 +34,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Template />
-        {/*<img src={logo} className="App-logo" alt="logo" />*/}
-        {/*<p>{!data ? "Loading..." : data}</p>*/}
-        <Task name="Test Checkbox" checked="false"></Task>
+        {/*<NavbarPage>  </NavbarPage>*/}
+        <Template/>
+        {/*<TaskList tasks="tasks"></TaskList>*/}
       </header>
     </div>
   );
