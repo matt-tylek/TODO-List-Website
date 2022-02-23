@@ -3,9 +3,12 @@ import { useState } from 'react';
 import "./Template.css";
 import Modal from './Modal';
 import Backdrop from './Backdrop';
+import TaskList from './TaskList';
 
 function Template(props) {
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
+    const [tasks, setTasks] = useState([]);
+    const [newName, setNewName] = useState("");
     
     function addHandler() {
         console.log('Clicked!');
@@ -15,6 +18,21 @@ function Template(props) {
 
     function closeModalHandler() {
         setModalIsOpen(false);
+    }
+
+    //Adds a task and closes the modal
+    function confirmModalHandler() {
+       var newTask = {}
+       newTask.name = newName
+       newTask.checked = false
+       addTask(newTask)
+       closeModalHandler()
+    }
+
+    //A helper funciton to add a single task since the process is not intuitive
+    function addTask(task) {
+        //have to add in a certain way so the state works correctly
+        setTasks(tasks.concat(task))
     }
     
     return ( 
@@ -32,7 +50,7 @@ function Template(props) {
                 <div className="col col-11 mx-auto">
                     <div className="row bg-white rounded shadow-sm p-2 add-todo-wrapper align-items-center justify-content-center">
                         <div className="col">
-                            <input className="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Add new .."></input>
+                            <input value={newName} onChange={e => setNewName(e.target.value)} className="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Add new .."></input>
                         </div>
                         <div className="col-auto m-0 px-2 d-flex align-items-center">
                             <label className="text-secondary my-2 p-0 px-1 view-opt-label due-date-label d-none">Due date not set</label>
@@ -43,7 +61,7 @@ function Template(props) {
                             <div className='actions'>
                                 <button className="btn btn-primary" onClick={addHandler}>Add</button>
                             </div>
-                            {modalIsOpen &&  <Modal onCancel={closeModalHandler} onConfirm={closeModalHandler} />}
+                            {modalIsOpen &&  <Modal onCancel={closeModalHandler} onConfirm={confirmModalHandler} />}
                             {modalIsOpen && <Backdrop onCancel={closeModalHandler}/>}
                         </div>
                     </div>
@@ -74,36 +92,7 @@ function Template(props) {
 
             <div className="row mx-1 px-5 pb-3 w-80">
                 <div className="col mx-auto">
-                    <div className="row px-3 align-items-center todo-item rounded">
-                        <div className="col-auto m-1 p-0 d-flex align-items-center">
-                            <h2 className="m-0 p-0">
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
-                                <label className="form-check-label" for="flexCheckDefault">
-                                    <input type="text" className="form-control form-control-lg border-0 edit-todo-input bg-transparent rounded px-3" readonly value="Task..." title="Task..." />
-                                    <input type="text" className="form-control form-control-lg border-0 edit-todo-input rounded px-3 d-none" value="Task..." />
-                                </label>
-                            </div>
-                            </h2>
-                        </div>
-                        <div className="col-auto m-1 p-0 px-3 d-none">
-                        </div>
-                        <div className="col-auto m-1 p-0 todo-actions">
-                            <div className="row d-flex align-items-center justify-content-end">
-                                <h5 className="m-0 p-0 px-2">
-                                    <i className="fa fa-pencil text-info btn m-0 p-0" data-toggle="tooltip" data-placement="bottom" title="Edit todo"></i>
-                                </h5>
-                                <h5 className="m-0 p-0 px-2">
-                                    <i className="fa fa-trash-o text-danger btn m-0 p-0" data-toggle="tooltip" data-placement="bottom" title="Delete todo"></i>
-                                </h5>
-                            </div>
-                            <div className="row todo-created-info">
-                                <div className="col-auto d-flex align-items-center pr-2">
-                                    <label className="date-label my-2 text-white-50" class="test">9th Feb 2022</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <TaskList tasks={tasks} setTasks={setTasks}></TaskList>
                 </div>
             </div>
         </div>

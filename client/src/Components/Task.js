@@ -8,7 +8,7 @@ class Task extends React.Component {
 	render() {
 		return (
 			<li>
-				<input type="checkbox" checked={this.props.checked}></input>
+				<input type="checkbox" checked={this.props.checked} onChange={e => this.props.setChecked(e.target.checked)}></input>
 				<span>{this.props.name}</span>
 			</li>
 		)
