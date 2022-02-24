@@ -59,7 +59,7 @@ function Template(props) {
                         </div>
                         <div className="col-auto px-0 mx-0 mr-2">
                             <div className='actions'>
-                                <button className="btn btn-primary" onClick={addHandler}>Add</button>
+                                <button className="btn btn-primary" data-toggle="modal" onClick={addHandler}>Add</button>
                             </div>
                             {modalIsOpen &&  <Modal onCancel={closeModalHandler} onConfirm={confirmModalHandler} />}
                             {modalIsOpen && <Backdrop onCancel={closeModalHandler}/>}

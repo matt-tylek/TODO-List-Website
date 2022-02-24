@@ -9,6 +9,7 @@ import "./App.css";
 //import NavbarPage from "./Components/Menubar";
 import TaskList from "./Components/TaskList";
 import Template from "./Components/Template";
+import Backdrop from "./Components/Backdrop";
 
 /*
 var templateTasks = [
