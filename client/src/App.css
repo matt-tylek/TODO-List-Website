@@ -21,8 +21,13 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: grey;
   z-index: -1;
+  padding: 0px;
+}
+#formatMenubar{
+  background-color: tan;
+  color: blue
 }
 
 /*.App-link {

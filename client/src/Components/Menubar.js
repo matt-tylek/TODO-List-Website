@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {styles} from '../App'
 import {
   MDBContainer,
   MDBNavbar,
@@ -17,11 +18,12 @@ import {
   MDBCollapse
 } from 'mdb-react-ui-kit';
 
+
 export default function NavbarPage() {
   const [showBasic, setShowBasic] = useState(false);
 
   return (
-    <MDBNavbar expand='lg' light bgColor='light'>
+    <MDBNavbar expand='lg' id="formatMenubar">
       <MDBContainer fluid>
         <MDBNavbarBrand href='#'>Home Page</MDBNavbarBrand>
 
@@ -66,7 +68,7 @@ export default function NavbarPage() {
 
             <MDBNavbarItem>
               <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
-                Task View
+                
               </MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>

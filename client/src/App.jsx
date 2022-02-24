@@ -18,7 +18,7 @@ var templateTasks = [
   {name: "not do anythin", checked: true}
 ]*/
 
-function App() {
+export default function App() {
   /*
   const [data, setData] = React.useState(null);
 
@@ -34,8 +34,8 @@ function App() {
 
   return (
     <div className="App">
+    <NavbarPage>  </NavbarPage>
       <header className="App-header">
-        <NavbarPage>  </NavbarPage>
         <Template/>
         {/*<TaskList tasks="tasks"></TaskList>*/}
       </header>
@@ -43,4 +43,4 @@ function App() {
   );
 }
 
-export default App;
+
