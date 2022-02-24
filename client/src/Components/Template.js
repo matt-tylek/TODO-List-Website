@@ -1,14 +1,28 @@
 //import React from "react";
-import { useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import "./Template.css";
 import Modal from './Modal';
 import Backdrop from './Backdrop';
 import TaskList from './TaskList';
 
+//info from https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
+export const TasksContext = createContext({
+    tasks: [],
+    setTasks: () => {},
+    setTask: (index, value) => {}
+})
+
 function Template(props) {
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [tasks, setTasks] = useState([]);
+    const contextValue = {tasks, setTasks, setTask}
     const [newName, setNewName] = useState("");
+
+    function setTask(index, value) {
+        var newTasks = [...tasks]
+        newTasks[index] = value
+        setTasks(newTasks)
+    }
     
     function addHandler() {
         console.log('Clicked!');
@@ -36,7 +50,7 @@ function Template(props) {
     }
     
     return ( 
-        <div>
+        <TasksContext.Provider value={contextValue}>
             
             
             <div className="row m-1 p-4">
@@ -92,10 +106,10 @@ function Template(props) {
 
             <div className="row mx-1 px-5 pb-3 w-80">
                 <div className="col mx-auto">
-                    <TaskList tasks={tasks} setTasks={setTasks}></TaskList>
+                    <TaskList></TaskList>
                 </div>
             </div>
-        </div>
+        </TasksContext.Provider>
     );
 }
 

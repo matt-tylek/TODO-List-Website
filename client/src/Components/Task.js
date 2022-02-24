@@ -1,18 +1,21 @@
-import React from "react"
+import React, { useContext } from "react"
+import { TasksContext } from "./Template"
 
-class Task extends React.Component {
-	constructor(props) {
-		super(props)
-		this.props = props
+export function Task(props) {
+	const {tasks, setTasks, setTask} = useContext(TasksContext);
+
+	function setChecked(value) {
+		var newTask = props.task
+		newTask.checked = value
+		setTask(newTask)
 	}
-	render() {
-		return (
-			<li>
-				<input type="checkbox" checked={this.props.checked} onChange={e => this.props.setChecked(e.target.checked)}></input>
-				<span>{this.props.name}</span>
-			</li>
-		)
-	}
+
+	return (
+		<li>
+			<input type="checkbox" checked={props.task.checked} onChange={e => setChecked(e.target.checked)}></input>
+			<span>{props.task.name}</span>
+		</li>
+	)
 }
 
 export default Task
