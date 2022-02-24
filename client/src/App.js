@@ -6,7 +6,7 @@ import React from "react";
 //>>>>>>> refs/remotes/origin/main
 import "./App.css";
 //import "./Components/Menubar.js";
-//import NavbarPage from "./Components/Menubar";
+import NavbarPage from "./Components/Menubar";
 import TaskList from "./Components/TaskList";
 import Template from "./Components/Template";
 import Backdrop from "./Components/Backdrop";
@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/*<NavbarPage>  </NavbarPage>*/}
+        <NavbarPage>  </NavbarPage>
         <Template/>
         {/*<TaskList tasks="tasks"></TaskList>*/}
       </header>
