@@ -11,9 +11,9 @@ function TaskList(props) {
 	)
 
 	return (
-		<ul>
+		<ol id="formatList">
 			{tasksView}
-		</ul>
+		</ol>
 	)
 }
 

@@ -11,7 +11,7 @@ function Modal(props) {
     
         return (
             <div id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <p></p>
+                {/*info from https://getbootstrap.com/docs/4.0/components/modal/*/}
                 <div className="modal-header">
                     <h5 className="modal-title" id="exampleModalLabel">New Task</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={cancelHandler}>

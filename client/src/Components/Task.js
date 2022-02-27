@@ -13,7 +13,7 @@ export function Task(props) {
 	return (
 		<li>
 			<input type="checkbox" checked={props.task.checked} onChange={e => setChecked(e.target.checked)}></input>
-			<span>{props.task.name}</span>
+			<span>  {props.task.name}</span>
 		</li>
 	)
 }

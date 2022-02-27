@@ -28,6 +28,7 @@ function Template(props) {
         console.log('Clicked!');
         //console.log(props.text)
         setModalIsOpen(true);
+        document.getElementById("InputID").value = "";
     }
 
     function closeModalHandler() {
@@ -52,11 +53,11 @@ function Template(props) {
     return ( 
         <TasksContext.Provider value={contextValue}>
             
-            
+            {/*info from https://freefrontend.com/bootstrap-to-do-lists/*/}
             <div className="row m-1 p-4">
                 <div className="col">
                     <div className="p-1 h1 text-primary text-center mx-auto display-inline-block">
-                        <u>My Todo-s</u>
+                        <u id="test">My Todo-s</u>
                     </div>
                 </div>
             </div>
@@ -64,7 +65,7 @@ function Template(props) {
                 <div className="col col-11 mx-auto">
                     <div className="row bg-white rounded shadow-sm p-2 add-todo-wrapper align-items-center justify-content-center">
                         <div className="col">
-                            <input value={newName} onChange={e => setNewName(e.target.value)} className="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Add new .."></input>
+                            <input onChange={e => setNewName(e.target.value)} className="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Add new .." id="InputID"></input>
                         </div>
                         <div className="col-auto m-0 px-2 d-flex align-items-center">
                             <label className="text-secondary my-2 p-0 px-1 view-opt-label due-date-label d-none">Due date not set</label>
@@ -81,12 +82,11 @@ function Template(props) {
                     </div>
                 </div>
             </div>
-            <div className="p-2 mx-4 border-black-25 border-bottom"></div>
 
             <div className="row m-1 p-3 px-5 justify-content-end">
                 <div className="col-auto d-flex align-items-center">
                     <label className="text-secondary my-2 pr-2 view-opt-label">Filter</label>
-                    <select className="custom-select custom-select-sm btn my-2">
+                    <select className="custom-select custom-select-sm btn my-2" id="dropdowns">
                         <option value="all" selected>All</option>
                         <option value="completed">Completed</option>
                         <option value="active">Active</option>
@@ -95,7 +95,7 @@ function Template(props) {
                 </div>
                 <div className="col-auto d-flex align-items-center px-1 pr-3">
                     <label className="text-secondary my-2 pr-2 view-opt-label">Sort</label>
-                    <select className="custom-select custom-select-sm btn my-2">
+                    <select className="custom-select custom-select-sm btn my-2" id="dropdowns">
                         <option value="added-date-asc" selected>Added date</option>
                         <option value="due-date-desc">Due date</option>
                     </select>

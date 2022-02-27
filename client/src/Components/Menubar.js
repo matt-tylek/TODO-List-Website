@@ -25,7 +25,7 @@ export default function NavbarPage() {
   return (
     <MDBNavbar expand='lg' id="formatMenubar">
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>Home Page</MDBNavbarBrand>
+        <MDBNavbarBrand href='#'>Home</MDBNavbarBrand>
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
@@ -43,24 +43,21 @@ export default function NavbarPage() {
                 Calender
               </MDBNavbarLink>
             </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='#'>Link</MDBNavbarLink>
-            </MDBNavbarItem>
 
             <MDBNavbarItem>
               <MDBDropdown>
-                <MDBDropdownToggle tag='a' className='nav-link'>
-                
+                <MDBDropdownToggle tag='a' className='nav-link' href='#'>
+                  My Lists
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
                   <MDBDropdownItem>
-                    <MDBDropdownLink>Action</MDBDropdownLink>
+                    <MDBDropdownLink>Current Lists</MDBDropdownLink>
                   </MDBDropdownItem>
                   <MDBDropdownItem>
-                    <MDBDropdownLink>Another action</MDBDropdownLink>
+                    <MDBDropdownLink>Previous Lists</MDBDropdownLink>
                   </MDBDropdownItem>
                   <MDBDropdownItem>
-                    <MDBDropdownLink>Something else here</MDBDropdownLink>
+                    <MDBDropdownLink>All Lists</MDBDropdownLink>
                   </MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
@@ -68,7 +65,7 @@ export default function NavbarPage() {
 
             <MDBNavbarItem>
               <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
-                
+                My Account
               </MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>

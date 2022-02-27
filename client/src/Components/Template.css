@@ -1,7 +1,10 @@
 #flexCheckDefault{
   margin-top: 15px;
 }
-.test{
-  margin-bottom: 20px
+#dropdowns{
+  height: 40px;
 }
-
+#formatList{
+  text-align: justify;
+  color: white;
+}

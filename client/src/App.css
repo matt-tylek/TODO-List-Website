@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 120vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,8 +26,9 @@
   padding: 0px;
 }
 #formatMenubar{
-  background-color: tan;
-  color: blue
+  background-color: lightgray;
+  color: #2c7ef6;
+  margin-bottom: -200px;
 }
 
 /*.App-link {
