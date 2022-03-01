@@ -4,24 +4,31 @@ import "./Template.css";
 import Modal from './Modal';
 import Backdrop from './Backdrop';
 import TaskList from './TaskList';
+import { InfoModal } from './InfoModal';
 
 //info from https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
 export const TasksContext = createContext({
     tasks: [],
     setTasks: () => {},
-    setTask: (index, value) => {}
+    setTask: (index, value) => {},
+    viewTask: (task) => {}
 })
 
 function Template(props) {
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
+    const [ infoModalIsOpen, setInfoModalIsOpen ] = useState([false, {}]);
     const [tasks, setTasks] = useState([]);
-    const contextValue = {tasks, setTasks, setTask}
+    const contextValue = {tasks, setTasks, setTask, viewTask}
     const [newName, setNewName] = useState("");
 
     function setTask(index, value) {
         var newTasks = [...tasks]
         newTasks[index] = value
         setTasks(newTasks)
+    }
+
+    function viewTask(task) {
+        setInfoModalIsOpen([true, task])
     }
     
     function addHandler() {
@@ -36,12 +43,16 @@ function Template(props) {
     }
 
     //Adds a task and closes the modal
-    function confirmModalHandler() {
-       var newTask = {}
+    function confirmModalHandler(task) {
+       var newTask = task
        newTask.name = newName
        newTask.checked = false
        addTask(newTask)
        closeModalHandler()
+    }
+
+    function closeInfoModalHandler() {
+        setInfoModalIsOpen([false, {}])
     }
 
     //A helper funciton to add a single task since the process is not intuitive
@@ -78,6 +89,9 @@ function Template(props) {
                             </div>
                             {modalIsOpen &&  <Modal onCancel={closeModalHandler} onConfirm={confirmModalHandler} />}
                             {modalIsOpen && <Backdrop onCancel={closeModalHandler}/>}
+
+                            {infoModalIsOpen[0] && <InfoModal onClose={closeInfoModalHandler} task={infoModalIsOpen[1]}></InfoModal>}
+                            {infoModalIsOpen[0] && <Backdrop onCancel={closeInfoModalHandler}></Backdrop>}
                         </div>
                     </div>
                 </div>

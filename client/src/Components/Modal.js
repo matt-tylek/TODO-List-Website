@@ -1,3 +1,5 @@
+import {useState } from "react"
+
 function Modal(props) {
     
     function cancelHandler() {
@@ -5,9 +7,21 @@ function Modal(props) {
     }
 
     function confirmHandler() {
-        props.onConfirm();
+        props.onConfirm(task);
     }
-    console.log(props.modalIsOpen)
+
+    const [task, setTask] = useState({})
+
+    function updateDescription(event) {
+        var tempTask = task
+        task.description = event.target.value
+        setTask(tempTask)
+    }
+    function updateDate(event) {
+        var tempTask = task
+        task.date = event.target.value
+        setTask(tempTask)
+    }
     
         return (
             <div id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -22,11 +36,11 @@ function Modal(props) {
                     <form>
                         <div class="form-group">
                             <label for="inputDate">Completion Date:</label>
-                            <input type="date" class="form-control" id="inputDate"></input>
+                            <input onChange={updateDate} type="date" class="form-control" id="inputDate"></input>
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Descriptions/Notes</label>
-                            <input type="description" class="form-control" id="inputDescription" placeholder="..."></input>
+                            <input onChange={updateDescription} type="description" class="form-control" id="inputDescription" placeholder="..."></input>
                         </div>
                     </form>
                 </div>
