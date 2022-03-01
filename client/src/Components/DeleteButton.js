@@ -1,9 +1,9 @@
 import React from "react";
 
-function DeleteButton(){
+function Delete_Button(){
     <div>
         <button className="del-button">x</button>
     </div>
 }
 
-export default DeleteButton;
+export default Delete_Button;
