@@ -12,8 +12,8 @@ export function Task(props) {
 
 	return (
 		<li>
-			<div onClick={e=>viewTask(props.task)}>
-				<input type="checkbox" checked={props.task.checked} onChange={e => setChecked(e.target.checked)}></input>
+			<input type="checkbox" checked={props.task.checked} onChange={e => setChecked(e.target.checked)}></input>
+			<div onClick={e=>viewTask(props.task)} id="taskDivMouseCursor">
 				<span>  {props.task.name} </span>
 			</div>
 		</li>

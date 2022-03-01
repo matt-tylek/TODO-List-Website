@@ -38,3 +38,7 @@ code {
   left: 0;
 }
 
+#taskDivMouseCursor{
+  cursor: pointer;
+  display: inline;
+}
