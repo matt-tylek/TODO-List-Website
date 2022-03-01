@@ -8,3 +8,14 @@
   text-align: justify;
   color: white;
 }
+#del-button{
+  margin-left: 70px;
+  background:rgb(255,0,0);
+  padding:1px 5px;
+  border-radius:2px;
+  color:white;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+
