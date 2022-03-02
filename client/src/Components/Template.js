@@ -18,17 +18,22 @@ function Template(props) {
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [ infoModalIsOpen, setInfoModalIsOpen ] = useState([false, {}]);
     const [tasks, setTasks] = useState([]);
-    const contextValue = {tasks, setTasks, setTask, viewTask}
+    const contextValue = {tasks, setTasks, setTask, viewTask, deleteTask}
     const [newName, setNewName] = useState("");
 
+    var newTasks = [...tasks]
     function setTask(index, value) {
-        var newTasks = [...tasks]
         newTasks[index] = value
         setTasks(newTasks)
     }
 
     function viewTask(task) {
         setInfoModalIsOpen([true, task])
+    }
+    function deleteTask(task){
+        //info to remove a task from an array: https://www.mywebtuts.com/blog/react-native-remove-item-from-array-example
+        newTasks.splice(newTasks.indexOf(task), 1);
+        setTasks(newTasks)
     }
     
     function addHandler() {
@@ -55,7 +60,7 @@ function Template(props) {
         setInfoModalIsOpen([false, {}])
     }
 
-    //A helper funciton to add a single task since the process is not intuitive
+    //A helper function to add a single task since the process is not intuitive
     function addTask(task) {
         //have to add in a certain way so the state works correctly
         setTasks(tasks.concat(task))

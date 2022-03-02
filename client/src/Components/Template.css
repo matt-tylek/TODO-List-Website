@@ -8,6 +8,12 @@
   text-align: justify;
   color: white;
 }
+#formatTrashCan{
+  float: right;
+  display: inline;
+  margin-left: 100px;
+  cursor: pointer;
+}
 #del-button{
   margin-left: 70px;
   background:rgb(255,0,0);
