@@ -12,7 +12,7 @@ app.get("/api", (req, res) => {
 });
 
 // All other GET requests not handled before will return our React app
-app.get('static', (req, res) => {
+app.get('/static', (req, res) => {
   console.log("sending ", req.url)
   res.sendFile(req.url)
 })
