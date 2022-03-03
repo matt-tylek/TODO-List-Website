@@ -1,5 +1,4 @@
 deploy:
   stage: deploy
   script:
-   - git remote add heroku https://heroku:$5d115dc3-6d7b-48fe-8700-9aaf48577585@git.heroku.com/wiki-list.git
-   - git push -f heroku master
+   - git push https://git.heroku.com/wiki-list.git
