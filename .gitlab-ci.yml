@@ -1,7 +1,10 @@
 before_script:
     - gem install dpl
 
-deploy:
+stages:
+    - production
+
+production:
     type: deploy
     stage: production
     script:
