@@ -1,4 +1,4 @@
 deploy:
   stage: deploy
   script:
-   - git push https://git.heroku.com/wiki-list.git
+   - git push https://git.heroku.com/wiki-list.git HEAD:master
