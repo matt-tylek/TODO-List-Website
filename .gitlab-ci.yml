@@ -2,6 +2,6 @@ staging:
     stage: deploy
     script:
         - gem install dpl
-        - dpl --provider=heroku --app=$wiki-list --api-key=417d3e4e-d345-4c83-87ad-302bd313672e
+        - dpl --provider=heroku --app=wiki-list --api-key=417d3e4e-d345-4c83-87ad-302bd313672e
     only:
         - main
