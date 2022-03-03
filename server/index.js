@@ -12,13 +12,18 @@ app.get("/api", (req, res) => {
 });
 
 // All other GET requests not handled before will return our React app
-app.get('/static', (req, res) => {
+/*app.get('/static', (req, res) => {
   console.log("sending ", req.url)
   res.sendFile(req.url)
 });
 app.get('*', (req, res) => {
   console.log("Sending index.html for request ", req.url)
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});*/
+
+//very unsafe but it works
+app.get('*', (req, res) => {
+  res.sendFile(req.url);
 });
 
 app.listen(PORT, () => {
