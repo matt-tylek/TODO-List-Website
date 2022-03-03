@@ -15,9 +15,9 @@ app.get("/api", (req, res) => {
 app.get('/static', (req, res) => {
   console.log("sending ", req.url)
   res.sendFile(req.url)
-})
+});
 app.get('*', (req, res) => {
-  console.log("sending index.html for request", req.url)
+  console.log("Sending index.html for request ", req.url)
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
