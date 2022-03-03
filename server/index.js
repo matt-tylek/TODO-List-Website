@@ -15,10 +15,7 @@ app.get("/api", (req, res) => {
 //app.use(express.static(path.join(__dirname, './../build')));
 
 app.get('*', (req, res) => {
-  const p = path.resolve(__dirname, '../client/build', req.url)
-  console.log("Sending", p, "for request ", req.url)
-  res.sendFile(p)
-  //res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 })
 
 app.listen(PORT, () => {
