@@ -25,7 +25,11 @@ app.get('*', (req, res) => {
 app.get('*', (req, res) => {
   const p = path.resolve(__dirname, req.url);
   console.log("sending file for", p)
-  res.sendFile(p);
+  if (req.url == '/') {
+    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html')); 
+  } else {
+    res.sendFile(p);
+  }
 });
 
 app.listen(PORT, () => {
