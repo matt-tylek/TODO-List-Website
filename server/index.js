@@ -23,7 +23,7 @@ app.get('*', (req, res) => {
 
 //very unsafe but it works
 app.get('*', (req, res) => {
-  const p = path.resolve(__dirname, req.url);
+  const p = path.resolve(__dirname, "../", req.url);
   console.log("sending file for", p)
   if (req.url == '/') {
     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html')); 
