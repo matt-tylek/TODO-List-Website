@@ -12,8 +12,12 @@ app.get("/api", (req, res) => {
 });
 
 // All other GET requests not handled before will return our React app
-app.use(express.static('static'))
+app.get('static', (req, res) => {
+  console.log("sending ", req.url)
+  res.sendFile(req.url)
+})
 app.get('*', (req, res) => {
+  console.log("sending index.html for request", req.url)
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
