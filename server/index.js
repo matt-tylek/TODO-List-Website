@@ -12,25 +12,13 @@ app.get("/api", (req, res) => {
 });
 
 // All other GET requests not handled before will return our React app
-/*app.get('/static', (req, res) => {
-  console.log("sending ", req.url)
-  res.sendFile(req.url)
-});
-app.get('*', (req, res) => {
-  console.log("Sending index.html for request ", req.url)
-  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-});*/
+//app.use(express.static(path.join(__dirname, './../build')));
 
-//very unsafe but it works
 app.get('*', (req, res) => {
-  const p = path.resolve(__dirname, "../", req.url);
-  console.log("sending file for", p)
-  if (req.url == '/') {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html')); 
-  } else {
-    res.sendFile(p);
-  }
-});
+  const p = path.resolve(__dirname, '../client/build', req.url)
+  console.log("Sending", p, "for request ", req.url)
+  res.sendFile(p);
+})
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
