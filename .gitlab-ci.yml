@@ -1,7 +1,5 @@
-heroku:
- stage: deploy
- only:
- - master
- script:
- - git remote add heroku https://heroku:417d3e4e-d345-4c83-87ad-302bd313672e@git.heroku.com/wiki-list.git
- - git push -f heroku master
+deploy:
+  stage: deploy
+  script:
+  - gem install dpl
+  - dpl --provider=heroku --app=wiki-list --api-key=$417d3e4e-d345-4c83-87ad-302bd313672e
