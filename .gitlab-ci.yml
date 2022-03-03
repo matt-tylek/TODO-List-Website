@@ -1,4 +1,18 @@
-deploy:
-  stage: deploy
-  script:
-   - git push https://git.heroku.com/wiki-list.git HEAD:master
+image: node:latest
+
+before_script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+
+stages:
+    - production
+
+production:
+    type: deploy
+    stage: production
+    image: ruby:latest
+    script:
+        - dpl --provider=heroku --app=$wiki-list --api-key=417d3e4e-d345-4c83-87ad-302bd313672e
+    only:
+        - master
