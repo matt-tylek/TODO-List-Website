@@ -23,7 +23,9 @@ app.get('*', (req, res) => {
 
 //very unsafe but it works
 app.get('*', (req, res) => {
-  res.sendFile(req.url);
+  const p = path.resolve(__dirname, req.url);
+  console.log("sending file for", p)
+  res.sendFile(p);
 });
 
 app.listen(PORT, () => {
