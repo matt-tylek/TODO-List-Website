@@ -1,4 +1,13 @@
 {
+  "emulators": {
+    "ui": {
+      "enabled": true,     
+      "port": 4000          
+    },
+    "hosting": {
+      "port": 9000
+    }
+  },
   "hosting": {
     "public": "build",
     "ignore": [
