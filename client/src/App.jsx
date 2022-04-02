@@ -36,7 +36,7 @@ export default function App() {
     <div className="App">
     <NavbarPage>  </NavbarPage>
       <header className="App-header">
-        <Template/>
+        <Template className="template"/>
         {/*<TaskList tasks="tasks"></TaskList>*/}
       </header>
     </div>
