@@ -19,7 +19,7 @@ import {
 } from 'mdb-react-ui-kit';
 
 
-export default function NavbarPage() {
+export default function NavbarPage(props) {
   const [showBasic, setShowBasic] = useState(false);
 
   return (
@@ -68,12 +68,16 @@ export default function NavbarPage() {
                 My Account
               </MDBNavbarLink>
             </MDBNavbarItem>
+            
           </MDBNavbarNav>
 
           <form className='d-flex input-group w-auto'>
             <input type='search' className='form-control' placeholder='Type query' aria-label='Search' />
             <MDBBtn color='primary'>Search</MDBBtn>
           </form>
+          <MDBNavbarItem>
+            <MDBBtn color='primary' onClick={props.login}>Login</MDBBtn>
+          </MDBNavbarItem>
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>

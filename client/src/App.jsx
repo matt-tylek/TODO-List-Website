@@ -2,7 +2,7 @@
 //import React from "react";
 //import logo from "./logo.svg";
 //=======
-import React from "react";
+import React, { useState } from "react";
 //>>>>>>> refs/remotes/origin/main
 import "./App.css";
 //import "./Components/Menubar.js";
@@ -10,6 +10,7 @@ import NavbarPage from "./Components/Menubar";
 import TaskList from "./Components/TaskList";
 import Template from "./Components/Template";
 import Backdrop from "./Components/Backdrop";
+import { LoginModal } from "./Components/LoginModal";
 
 /*
 var templateTasks = [
@@ -32,11 +33,27 @@ export default function App() {
       .then((data) => setData(data.message));
   }, []);*/
 
+  const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
+
+  function closeLoginModalHandler() {
+    setLoginModalIsOpen(false);
+  }
+
+  function login() {
+    setLoginModalIsOpen(true);
+  }
+
   return (
     <div className="App">
-    <NavbarPage>  </NavbarPage>
+      <NavbarPage login={login}>  </NavbarPage>
       <header className="App-header">
-        <Template className="template"/>
+        <Template className="template">
+          <h1>Hellowd</h1>
+          {loginModalIsOpen && <LoginModal onCancel={closeLoginModalHandler}/>}
+          {loginModalIsOpen && <Backdrop onCancel={closeLoginModalHandler}/>} 
+        </Template>
+
+        
         {/*<TaskList tasks="tasks"></TaskList>*/}
       </header>
     </div>

@@ -128,6 +128,7 @@ function Template(props) {
                     <TaskList></TaskList>
                 </div>
             </div>
+            {props.children}
         </TasksContext.Provider>
     );
 }
