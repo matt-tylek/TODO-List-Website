@@ -3,6 +3,12 @@
 //import logo from "./logo.svg";
 //=======
 import React, { useState } from "react";
+
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import CompletedTaskView from "./Components/CompletedTaskView.js";
+import AllViews from "./Components/ADifferentView.js";
 //>>>>>>> refs/remotes/origin/main
 import "./App.css";
 //import "./Components/Menubar.js";
@@ -11,6 +17,7 @@ import TaskList from "./Components/TaskList";
 import Template from "./Components/Template";
 import Backdrop from "./Components/Backdrop";
 import { LoginModal } from "./Components/LoginModal";
+
 
 /*
 var templateTasks = [
@@ -42,20 +49,34 @@ export default function App() {
   function login() {
     setLoginModalIsOpen(true);
   }
+ 
+  
 
+  
+ 
   return (
     <div className="App">
+      <Router>
+        <footer>
       <NavbarPage login={login}>  </NavbarPage>
       <header className="App-header">
-        <Template className="template">
-          <h1>Hellowd</h1>
-          {loginModalIsOpen && <LoginModal onCancel={closeLoginModalHandler}/>}
-          {loginModalIsOpen && <Backdrop onCancel={closeLoginModalHandler}/>} 
-        </Template>
+      <Switch>
+         <Route path="/All">
+         <Template className="template">
+  
 
-        
+              {loginModalIsOpen && <LoginModal onCancel={closeLoginModalHandler}/>}
+              {loginModalIsOpen && <Backdrop onCancel={closeLoginModalHandler}/>} 
+         </Template>
+         </Route>
+
+    <Route path="/Completed"> <CompletedTaskView></CompletedTaskView></Route>
+
+  </Switch>
         {/*<TaskList tasks="tasks"></TaskList>*/}
       </header>
+      </footer>
+      </Router>
     </div>
   );
 }

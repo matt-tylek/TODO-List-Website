@@ -17,6 +17,7 @@ import {
   MDBDropdownLink,
   MDBCollapse
 } from 'mdb-react-ui-kit';
+import { Link } from 'react-router-dom';
 
 
 export default function NavbarPage(props) {
@@ -54,10 +55,11 @@ export default function NavbarPage(props) {
                     <MDBDropdownLink>Current Lists</MDBDropdownLink>
                   </MDBDropdownItem>
                   <MDBDropdownItem>
-                    <MDBDropdownLink>Previous Lists</MDBDropdownLink>
+                   <Link to="/Completed">Previous Lists </Link>
                   </MDBDropdownItem>
                   <MDBDropdownItem>
-                    <MDBDropdownLink>All Lists</MDBDropdownLink>
+                    <MDBDropdownLink><Link to="/All"> All Lists</Link></MDBDropdownLink>
+
                   </MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
