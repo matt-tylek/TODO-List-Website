@@ -52,7 +52,7 @@ export default function NavbarPage(props) {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
                   <MDBDropdownItem>
-                    <MDBDropdownLink>Current Lists</MDBDropdownLink>
+                    <Link to="/Incomplete">Current Lists</Link>
                   </MDBDropdownItem>
                   <MDBDropdownItem>
                    <Link to="/Completed">Previous Lists </Link>

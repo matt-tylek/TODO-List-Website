@@ -9,6 +9,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 import CompletedTaskView from "./Components/CompletedTaskView.js";
 import AllViews from "./Components/ADifferentView.js";
+import IncompleteTasksView from "./Components/IncompleteTasksView.js";
 //>>>>>>> refs/remotes/origin/main
 import "./App.css";
 //import "./Components/Menubar.js";
@@ -73,7 +74,6 @@ export default function App() {
               {loginModalIsOpen && <Backdrop onCancel={closeLoginModalHandler}/>} 
          </Template>
          </Route>
-         
 
   </Switch>
         {/*<TaskList tasks="tasks"></TaskList>*/}
