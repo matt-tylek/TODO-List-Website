@@ -16,6 +16,7 @@ import NavbarPage from "./Components/Menubar";
 import TaskList from "./Components/TaskList";
 import Template from "./Components/Template";
 import Backdrop from "./Components/Backdrop";
+import Register from "./Components/Register.js";
 import { LoginModal } from "./Components/LoginModal";
 
 
@@ -61,7 +62,10 @@ export default function App() {
       <NavbarPage login={login}>  </NavbarPage>
       <header className="App-header">
       <Switch>
-         <Route path="/All">
+
+        <Route path="/Completed"> <CompletedTaskView></CompletedTaskView></Route>
+        <Route path="/register"><Register></Register></Route>
+         <Route path="/">
          <Template className="template">
   
 
@@ -69,8 +73,7 @@ export default function App() {
               {loginModalIsOpen && <Backdrop onCancel={closeLoginModalHandler}/>} 
          </Template>
          </Route>
-
-    <Route path="/Completed"> <CompletedTaskView></CompletedTaskView></Route>
+         
 
   </Switch>
         {/*<TaskList tasks="tasks"></TaskList>*/}

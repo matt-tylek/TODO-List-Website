@@ -17,7 +17,10 @@ function Register() {
     registerWithEmailAndPassword(name, email, password);
   };
   return (
-    <div className="register">
+    <div class="register">
+      <div>
+        <h1>Register</h1>
+      </div>
       <div className="register__container">
         <input
           type="text"
@@ -26,6 +29,7 @@ function Register() {
           onChange={(e) => setName(e.target.value)}
           placeholder="Full Name"
         />
+        <br/>
         <input
           type="text"
           className="register__textBox"
@@ -33,6 +37,7 @@ function Register() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
         />
+        <br/>
         <input
           type="password"
           className="register__textBox"
@@ -40,6 +45,7 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
+        <br/>
         <button className="register__btn" onClick={register}>
           Register
         </button>

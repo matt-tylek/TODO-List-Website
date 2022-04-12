@@ -27,7 +27,7 @@ export function LoginModal(props) {
 				</button>
 				<p class="login__text">
 					<a href="/reset">Forgot Password</a><br/>
-					Don't have an account? <a href="/register">register</a> now.
+					Don't have an account? <Link to="/register">register</Link> now.
 				</p>
 			</div>
 		</div>
