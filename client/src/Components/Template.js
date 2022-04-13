@@ -80,6 +80,9 @@ function Template(props) {
                     result.push(task)
                 }
             }
+            else{ //check is the filter is set to all
+                result.push(task)
+            }
         }
         return result;
     }
