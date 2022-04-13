@@ -1,0 +1,28 @@
+#flexCheckDefault{
+  margin-top: 15px;
+}
+#dropdowns{
+  height: 40px;
+}
+#formatList{
+  text-align: justify;
+  color: white;
+}
+#formatTrashCan{
+  float: right;
+  display: inline;
+  margin-left: 100px;
+  cursor: pointer;
+}
+#del-button{
+  margin-left: 70px;
+  background:rgb(255,0,0);
+  padding:1px 5px;
+  border-radius:2px;
+  color:white;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+
