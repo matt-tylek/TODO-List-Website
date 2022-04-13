@@ -75,6 +75,11 @@ function Template(props) {
                     result.push(task)
                 }
             }
+            else if(filter == "active"){ //check if the filter is set to active
+                if(!task.checked){
+                    result.push(task)
+                }
+            }
         }
         return result;
     }
