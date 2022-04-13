@@ -8,7 +8,7 @@ import { InfoModal } from './InfoModal';
 
 //info from https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
 export const TasksContext = createContext({
-    tasks: [],
+    tasks: () => {},
     setTasks: () => {},
     setTask: (index, value) => {},
     viewTask: (task) => {}
@@ -18,8 +18,9 @@ function Template(props) {
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [ infoModalIsOpen, setInfoModalIsOpen ] = useState([false, {}]);
     const [tasks, setTasks] = useState([]);
-    const contextValue = {tasks, setTasks, setTask, viewTask, deleteTask}
+    const contextValue = {getTasks, setTasks, setTask, viewTask, deleteTask}
     const [newName, setNewName] = useState("");
+    const [filter, setFilter] = useState("") //getter and setter
 
     var newTasks = [...tasks]
     function setTask(index, value) {
@@ -65,6 +66,18 @@ function Template(props) {
         //have to add in a certain way so the state works correctly
         setTasks(tasks.concat(task))
     }
+
+    function getTasks(){
+        var result = []
+        for(const task of tasks) {  //for each loop
+            if(filter == "completed"){ //check if the filter is set to completed
+                if(task.checked){
+                    result.push(task)
+                }
+            }
+        }
+        return result;
+    }
     
     return ( 
         <TasksContext.Provider value={contextValue}>
@@ -105,11 +118,10 @@ function Template(props) {
             <div className="row m-1 p-3 px-5 justify-content-end">
                 <div className="col-auto d-flex align-items-center">
                     <label className="text-secondary my-2 pr-2 view-opt-label">Filter</label>
-                    <select className="custom-select custom-select-sm btn my-2" id="dropdowns">
+                    <select className="custom-select custom-select-sm btn my-2" id="dropdowns" onChange={e => {setFilter(e.target.value); console.log(e.target.value)}}>
                         <option value="all" selected>All</option>
                         <option value="completed">Completed</option>
                         <option value="active">Active</option>
-                        <option value="has-due-date">Has due date</option>
                     </select>
                 </div>
                 <div className="col-auto d-flex align-items-center px-1 pr-3">

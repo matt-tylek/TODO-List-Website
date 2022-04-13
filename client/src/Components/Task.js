@@ -5,7 +5,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
  
 
 export function Task(props) {
-	const {tasks, setTasks, setTask, viewTask, deleteTask} = useContext(TasksContext);
+	const {getTasks, setTasks, setTask, viewTask, deleteTask, isChecked} = useContext(TasksContext);
 
 	function setChecked(value) {
 		var newTask = props.task

@@ -4,9 +4,9 @@ import { TasksContext } from "./Template";
 
 function TaskList(props) {
 
-	const {tasks} = useContext(TasksContext)
+	const {getTasks} = useContext(TasksContext)
 	
-	const tasksView = tasks.map((task) =>
+	const tasksView = getTasks().map((task) =>
 		<Task key={task} task={task}></Task>
 	)
 
