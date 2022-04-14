@@ -1,6 +1,7 @@
 //import React from "react";
 import { createContext, useContext, useState } from 'react';
 import "./Template.css";
+import "./Task.css";
 import Modal from './Modal';
 import Backdrop from './Backdrop';
 import TaskList from './TaskList';
