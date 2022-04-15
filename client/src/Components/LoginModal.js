@@ -10,7 +10,11 @@ export function LoginModal(props) {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const user = auth.currentUser;
-	
+	useEffect(() => {
+		if (user) {
+			props.onCancel();
+		}
+	})
 	return (
 		<div id="exampleModal" className="login" tabIndex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
 			<div className="modal-header">

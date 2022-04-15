@@ -18,10 +18,12 @@ import {
   MDBCollapse
 } from 'mdb-react-ui-kit';
 import { Link } from 'react-router-dom';
+import { auth } from '../firebase';
 
 
 export default function NavbarPage(props) {
   const [showBasic, setShowBasic] = useState(false);
+  const user = auth.currentUser;
   return (
     <MDBNavbar expand='lg' id="formatMenubar">
       <MDBContainer fluid>
@@ -77,7 +79,10 @@ export default function NavbarPage(props) {
             <MDBBtn color='primary'>Search</MDBBtn>
           </form>
           <MDBNavbarItem>
-            <MDBBtn color='primary' onClick={props.login}>Login</MDBBtn>
+            {user
+              ? <MDBNavbarItem>{user.displayName}</MDBNavbarItem>
+              : <MDBBtn color='primary' onClick={props.login}>Login</MDBBtn>
+            }
           </MDBNavbarItem>
         </MDBCollapse>
       </MDBContainer>

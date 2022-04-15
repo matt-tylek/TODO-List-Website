@@ -12,10 +12,16 @@ function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const history = useHistory();
+  const user = auth.currentUser;
   const register = () => {
     if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password);
   };
+  useEffect(() => {
+		if (user) {
+      history.replace("/")
+		}
+	})
   return (
     <div class="register">
       <div>
