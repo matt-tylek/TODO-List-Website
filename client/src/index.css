@@ -40,5 +40,10 @@ code {
 
 #taskDivMouseCursor{
   cursor: pointer;
-  display: inline;
+  display: inline-flex;
+}
+
+#checkboxCSS{
+  display: inline-flex;
+  margin-right: 10px;
 }

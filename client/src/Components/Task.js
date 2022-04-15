@@ -22,16 +22,18 @@ export function Task(props) {
 	return (
 		<li>
 			{/*<input type="checkbox" checked={props.task.checked} onChange={e => setChecked(e.target.checked)}></input>*/}
-			<CheckBox
-				checked={props.task.checked}
-  				checkBoxStyle={{
-    				checkedColor: "#34b93d",
-    				size: 20,
-    				unCheckedColor: "#b8b8b8"
-  				}}
-  				duration={400}
-				onClick={handleAnimation}
-			/>
+			<div id="checkboxCSS">
+				<CheckBox
+					checked={props.task.checked}
+					checkBoxStyle={{
+						checkedColor: "#34b93d",
+						size: 20,
+						unCheckedColor: "#b8b8b8"
+					}}
+					duration={400}
+					onClick={handleAnimation}
+				/>
+			</div>
 			<div onClick={e=>viewTask(props.task)} id="taskDivMouseCursor">
 				<span>  {props.task.name} </span>
 			</div>
