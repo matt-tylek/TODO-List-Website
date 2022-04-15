@@ -1,13 +1,16 @@
 //help from https://blog.logrocket.com/user-authentication-firebase-react-apps/
 
-import { useState } from "react"
+import {useEffect, useState } from "react"
 import "./Login.css"
 import { Link, useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
 
+
 export function LoginModal(props) {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
+	const user = auth.currentUser;
+	
 	return (
 		<div id="exampleModal" className="login" tabIndex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
 			<div className="modal-header">

@@ -22,7 +22,6 @@ import { Link } from 'react-router-dom';
 
 export default function NavbarPage(props) {
   const [showBasic, setShowBasic] = useState(false);
-
   return (
     <MDBNavbar expand='lg' id="formatMenubar">
       <MDBContainer fluid>
