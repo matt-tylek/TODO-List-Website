@@ -19,6 +19,15 @@ export function Task(props) {
 		setTask(newTask)
 	}
 
+	function getDueDate(){
+		if(props.task.date == undefined){
+			return "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
+		}
+		else{
+			return props.task.date
+		}
+	}
+
 	return (
 		<li>
 			{/*<input type="checkbox" checked={props.task.checked} onChange={e => setChecked(e.target.checked)}></input>*/}
@@ -37,8 +46,11 @@ export function Task(props) {
 			<div onClick={e=>viewTask(props.task)} id="taskDivMouseCursor">
 				<span>  {props.task.name} </span>
 			</div>
-			<div id="formatTrashCan" onClick={e=>deleteTask(props.task)}>
-				<FontAwesomeIcon icon={faTrashCan} />
+			<div id="formatDateAndTrashCan">
+				<div id="formatDueDate">due date: {getDueDate()} &nbsp;&nbsp;</div>
+				<div id="formatTrashCan" onClick={e=>deleteTask(props.task)}>
+					<FontAwesomeIcon icon={faTrashCan} />
+				</div>
 			</div>
 		</li>
 	)

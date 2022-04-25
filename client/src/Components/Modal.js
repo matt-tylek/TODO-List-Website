@@ -36,7 +36,7 @@ function Modal(props) {
                     <form>
                         <div class="form-group">
                             <label for="inputDate">Completion Date:</label>
-                            <input onChange={updateDate} type="date" class="form-control" id="inputDate"></input>
+                            <input onChange={updateDate} type="date" class="form-control" id="inputDate" value=""></input>
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Descriptions/Notes</label>
