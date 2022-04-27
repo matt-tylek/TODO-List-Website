@@ -18,14 +18,20 @@ function Template(props) {
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [ infoModalIsOpen, setInfoModalIsOpen ] = useState([false, {}]);
     const [tasks, setTasks] = useState([]);
-    const contextValue = {getTasks, setTasks, setTask, viewTask, deleteTask}
+    const [dueDates, setDueDates] = useState([]); //had to create a copy of "tasks" array for the "Due date" filter
+    const contextValue = {getTasks, setTasks, setTask, viewTask, deleteTask, setDueDate}
     const [newName, setNewName] = useState("");
     const [filter, setFilter] = useState("") //getter and setter
 
     var newTasks = [...tasks]
+    var dueDateSort = [...dueDates]
     function setTask(index, value) {
         newTasks[index] = value
         setTasks(newTasks)
+    }
+    function setDueDate(index, value){
+        dueDateSort[index] = value
+        setTasks(dueDateSort)
     }
 
     function viewTask(task) {
@@ -54,6 +60,7 @@ function Template(props) {
        newTask.name = newName
        newTask.checked = false
        addTask(newTask)
+       addDueDateTask(newTask)
        closeModalHandler()
     }
 
@@ -66,22 +73,38 @@ function Template(props) {
         //have to add in a certain way so the state works correctly
         setTasks(tasks.concat(task))
     }
+    function addDueDateTask(task){
+        setDueDates(dueDateSort.concat(task))
+    }
 
     function getTasks(){
         var result = []
-        for(const task of tasks) {  //for each loop
-            if(filter == "completed"){ //check if the filter is set to completed
-                if(task.checked){
-                    result.push(task)
+        for(let i = 0; i < tasks.length; i++) {  //for each loop
+            if(filter == "completed"){ //check if the filter is set to "Completed"
+                if(tasks[i].checked){
+                    result.push(tasks[i])
                 }
             }
-            else if(filter == "active"){ //check if the filter is set to active
-                if(!task.checked){
-                    result.push(task)
+            else if(filter == "active"){ //check if the filter is set to "Active"
+                if(!tasks[i].checked){
+                    result.push(tasks[i])
                 }
             }
-            else{ //check is the filter is set to all
-                result.push(task)
+            else if(filter == "dueDate"){ //check if the filter is set to "Due date"
+                //"dueDates" is the same as "tasks" (had to create a new const and state so that the other filters are not messed up)
+                for(let j = 0; j <  dueDates.length-i-1; j++){ //bubble sort
+                    var date1 = new Date(dueDates[j + 1].date)
+                    var date2 = new Date(dueDates[j].date)
+                    if(date1 - date2 < 0){ //Negative -	date1 before date2
+                        var tmp = dueDates[j];
+                        dueDates[j] = dueDates[j + 1];
+                        dueDates[j + 1] = tmp;
+                    }
+                }
+                result.push(dueDates[i])
+            }
+            else{ //check is the filter is set to "All"
+                result.push(tasks[i])
             }
         }
         return result;
@@ -130,8 +153,11 @@ function Template(props) {
                         <option value="all" selected>All</option>
                         <option value="completed">Completed</option>
                         <option value="active">Active</option>
+                        <option value="dueDate">Due date</option>
+                        <option value="addedDate">Added date</option>
                     </select>
                 </div>
+                {/*
                 <div className="col-auto d-flex align-items-center px-1 pr-3">
                     <label className="text-secondary my-2 pr-2 view-opt-label">Sort</label>
                     <select className="custom-select custom-select-sm btn my-2" id="dropdowns">
@@ -140,7 +166,7 @@ function Template(props) {
                     </select>
                     <i className="fa fa fa-sort-amount-asc text-info btn mx-0 px-0 pl-1" data-toggle="tooltip" data-placement="bottom" title="Ascending"></i>
                     <i className="fa fa fa-sort-amount-desc text-info btn mx-0 px-0 pl-1 d-none" data-toggle="tooltip" data-placement="bottom" title="Descending"></i>
-                </div>
+                </div>*/}
             </div>
 
             <div className="row mx-1 px-5 pb-3 w-80" id="template">
