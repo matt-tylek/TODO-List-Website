@@ -78,9 +78,20 @@ export default function NavbarPage(props) {
             <input type='search' className='form-control' placeholder='Type query' aria-label='Search' />
             <MDBBtn color='primary'>Search</MDBBtn>
           </form>
-          <MDBNavbarItem>
+          <MDBNavbarItem style={{ marginLeft: '5px'}}>
             {user
-              ? <MDBNavbarItem>{user.displayName}</MDBNavbarItem>
+              ? <MDBNavbarItem>
+                  <MDBDropdown>
+                    <MDBDropdownToggle tag='a' className='lav-link' href='#'>
+                      {user.displayName}
+                    </MDBDropdownToggle>
+                    <MDBDropdownMenu>
+                      <MDBDropdownItem>
+                        <MDBBtn color='primar'>Logout</MDBBtn>
+                      </MDBDropdownItem>
+                    </MDBDropdownMenu>
+                  </MDBDropdown>
+                </MDBNavbarItem>
               : <MDBBtn color='primary' onClick={props.login}>Login</MDBBtn>
             }
           </MDBNavbarItem>
