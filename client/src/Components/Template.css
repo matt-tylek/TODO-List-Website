@@ -35,5 +35,17 @@
   margin-top: 12px;
   display: inline;
 }
+#formatTrashCanAndBars{
+  float: right;
+  display: inline;
+  margin-left: 10px;
+}
+#formatBars{
+  float: left;
+  display: inline;
+  margin-right: 40px;
+  margin-left: 80px;
+  cursor: pointer;
+}
 
 
