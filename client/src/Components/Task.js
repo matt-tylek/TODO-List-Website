@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import CheckBox from "react-animated-checkbox"
 import { useState } from "react";
+import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
  
 
 export function Task(props) {
@@ -46,12 +47,23 @@ export function Task(props) {
 			<div onClick={e=>viewTask(props.task)} id="taskDivMouseCursor">
 				<span>  {props.task.name} </span>
 			</div>
+			
+			
 			<div id="formatDateAndTrashCan">
 				<div id="formatDueDate">due date: {getDueDate()} &nbsp;&nbsp;</div>
 				<div id="formatTrashCan" onClick={e=>deleteTask(props.task)}>
 					<FontAwesomeIcon icon={faTrashCan} />
 				</div>
+				<div id="formatTrashCanAndBars">
+				    <div id="formatBars">
+					<FontAwesomeIcon icon={faBarsStaggered} />
+			        </div>
+			    </div>
+			
+				
 			</div>
+			
+			
 		</li>
 	)
 }
