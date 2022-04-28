@@ -1,15 +1,16 @@
 //help from https://blog.logrocket.com/user-authentication-firebase-react-apps/
 
-import {useEffect, useState } from "react"
+import {useContext, useEffect, useState } from "react"
 import "./Login.css"
 import { Link, useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
+import { UserContext } from "../App";
 
 
 export function LoginModal(props) {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
-	const user = auth.currentUser;
+	const {user, setUser} = useContext(UserContext);
 	useEffect(() => {
 		if (user) {
 			props.onCancel();
@@ -25,11 +26,11 @@ export function LoginModal(props) {
 				<input type="password" className="login__textBox" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password"></input>
 			</div>
 			<div class="modal-body login__container">
-				<button className="login__btn" onClick={() => logInWithEmailAndPassword(email, password)}>
+				<button className="login__btn" onClick={() => logInWithEmailAndPassword(email, password, (u) => {setUser(u)})}>
 					Login
 				</button>
 				<br/>
-				<button className="login__btn login__google" onClick={signInWithGoogle}>
+				<button className="login__btn login__google" onClick={() => signInWithGoogle((u) => setUser(u))}>
 					Login with Google
 				</button>
 				<p class="login__text">

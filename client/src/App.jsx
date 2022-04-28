@@ -2,7 +2,7 @@
 //import React from "react";
 //import logo from "./logo.svg";
 //=======
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -19,6 +19,7 @@ import Template from "./Components/Template";
 import Backdrop from "./Components/Backdrop";
 import Register from "./Components/Register.js";
 import { LoginModal } from "./Components/LoginModal";
+import {logout} from "./firebase";
 
 
 /*
@@ -27,6 +28,11 @@ var templateTasks = [
   {name: "Take out laundry", checked: false},
   {name: "not do anythin", checked: true}
 ]*/
+
+export const UserContext = createContext({
+  user: () => {},
+  setUser: (user) => {}
+})
 
 export default function App() {
   /*
@@ -43,6 +49,7 @@ export default function App() {
   }, []);*/
 
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
   function closeLoginModalHandler() {
     setLoginModalIsOpen(false);
@@ -51,36 +58,41 @@ export default function App() {
   function login() {
     setLoginModalIsOpen(true);
   }
- 
-  
 
+  function localLogout() {
+    logout(() => setUser(null))
+  }
+ 
   
  
   return (
-    <div className="App">
-      <Router>
-        <footer>
-      <NavbarPage login={login}>  </NavbarPage>
-      <header className="App-header">
-      <Switch>
+    <UserContext.Provider value={{user, setUser}}>
+      <div className="App">
+            <Router>
+              <footer>
+            <NavbarPage login={login} logout={localLogout}>  </NavbarPage>
+            <header className="App-header">
+            <Switch>
 
-        <Route path="/Completed"> <CompletedTaskView></CompletedTaskView></Route>
-        <Route path="/register"><Register></Register></Route>
-         <Route path="/">
-         <Template className="template">
-  
+              <Route path="/Completed"> <CompletedTaskView></CompletedTaskView></Route>
+              <Route path="/register"><Register></Register></Route>
+              <Route path="/">
+              <Template className="template">
+        
 
-              {loginModalIsOpen && <LoginModal onCancel={closeLoginModalHandler}/>}
-              {loginModalIsOpen && <Backdrop onCancel={closeLoginModalHandler}/>} 
-         </Template>
-         </Route>
+                    {loginModalIsOpen && <LoginModal onCancel={closeLoginModalHandler}/>}
+                    {loginModalIsOpen && <Backdrop onCancel={closeLoginModalHandler}/>} 
+              </Template>
+              </Route>
 
-  </Switch>
-        {/*<TaskList tasks="tasks"></TaskList>*/}
-      </header>
-      </footer>
-      </Router>
-    </div>
+        </Switch>
+              {/*<TaskList tasks="tasks"></TaskList>*/}
+            </header>
+            </footer>
+            </Router>
+          </div>
+    </UserContext.Provider>
+    
   );
 }
 

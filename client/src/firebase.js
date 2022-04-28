@@ -38,9 +38,11 @@ const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
 //helpful functions
-const signInWithGoogle = async () => {
+const signInWithGoogle = async (then) => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
+    then(res.user);
+    /*const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
@@ -51,32 +53,35 @@ const signInWithGoogle = async () => {
         authProvider: "google",
         email: user.email,
       });
-    }
+    }*/
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 };
 
-const logInWithEmailAndPassword = async (email, password) => {
+const logInWithEmailAndPassword = async (email, password, then) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    then(res.user);
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 };
 
-const registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (name, email, password, user) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
+    then(res.user);
+    /*
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       name,
       authProvider: "local",
       email,
-    });
+    });*/
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -93,8 +98,13 @@ const sendPasswordReset = async (email) => {
   }
 };
 
-const logout = () => {
-  signOut(auth);
+const logout = async (then) => {
+  try {
+    await signOut(auth);
+    then()
+  } catch (err) {
+    console.log(err)
+  }
 };
 
 export {

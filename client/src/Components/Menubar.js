@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {styles} from '../App'
+import React, { useContext, useState } from 'react';
+import {styles, UserContext} from '../App'
 import {
   MDBContainer,
   MDBNavbar,
@@ -20,10 +20,10 @@ import {
 import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
 
-
 export default function NavbarPage(props) {
   const [showBasic, setShowBasic] = useState(false);
-  const user = auth.currentUser;
+  const {user, setUser} = useContext(UserContext);
+
   return (
     <MDBNavbar expand='lg' id="formatMenubar">
       <MDBContainer fluid>
@@ -87,7 +87,7 @@ export default function NavbarPage(props) {
                     </MDBDropdownToggle>
                     <MDBDropdownMenu>
                       <MDBDropdownItem>
-                        <MDBBtn color='primar'>Logout</MDBBtn>
+                        <MDBBtn color='primary' onClick={props.logout}>Logout</MDBBtn>
                       </MDBDropdownItem>
                     </MDBDropdownMenu>
                   </MDBDropdown>

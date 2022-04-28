@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useHistory } from "react-router-dom";
+import { UserContext } from "../App";
 import {
   auth,
   registerWithEmailAndPassword,
@@ -12,10 +13,10 @@ function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const history = useHistory();
-  const user = auth.currentUser;
+  const {user, setUser} = useContext(UserContext);
   const register = () => {
     if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, email, password);
+    registerWithEmailAndPassword(name, email, password, (u) => {setUser(u)});
   };
   useEffect(() => {
 		if (user) {
@@ -57,7 +58,7 @@ function Register() {
         </button>
         <button
           className="register__btn register__google"
-          onClick={signInWithGoogle}
+          onClick={signInWithGoogle((u) => setUser(u))}
         >
           Register with Google
         </button>
