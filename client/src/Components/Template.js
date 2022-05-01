@@ -56,9 +56,11 @@ function Template(props) {
 
     //Adds a task and closes the modal
     function confirmModalHandler(task) {
-       var newTask = task
-       newTask.name = newName
-       newTask.checked = false
+        var newTask = task
+        newTask.name = newName
+        newTask.checked = false
+        newTask.filterState = "0"
+
        addTask(newTask)
        addDueDateTask(newTask)
        closeModalHandler()
@@ -79,13 +81,16 @@ function Template(props) {
 
     function getTasks(){
         var result = []
+
         for(let i = 0; i < tasks.length; i++) {  //for each loop
             if(filter == "completed"){ //check if the filter is set to "Completed"
+                tasks[i].filterState = "0"
                 if(tasks[i].checked){
                     result.push(tasks[i])
                 }
             }
             else if(filter == "active"){ //check if the filter is set to "Active"
+                tasks[i].filterState = "0"
                 if(!tasks[i].checked){
                     result.push(tasks[i])
                 }
@@ -101,9 +106,15 @@ function Template(props) {
                         dueDates[j + 1] = tmp;
                     }
                 }
+                tasks[i].filterState = "0"
                 result.push(dueDates[i])
             }
+            else if(filter == "addedDate"){
+                tasks[i].filterState = "1"
+                result.push(tasks[i])
+            }
             else{ //check is the filter is set to "All"
+                tasks[i].filterState = "0"
                 result.push(tasks[i])
             }
         }

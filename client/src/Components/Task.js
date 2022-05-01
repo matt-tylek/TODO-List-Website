@@ -29,6 +29,20 @@ export function Task(props) {
 		}
 	}
 
+	function getAddedDate() {
+        //console.log("helelow")
+        //console.log(props.task)
+        //console.log(props.task.addedDate)
+	    console.log(props.task.filterState)
+		if(props.task.filterState == "1"){
+			return "added date: " + props.task.addedDate.toDateString()
+	    }
+        else{
+			return ""
+		}
+    }
+
+
 	return (
 		<li>
 			{/*<input type="checkbox" checked={props.task.checked} onChange={e => setChecked(e.target.checked)}></input>*/}
@@ -51,16 +65,15 @@ export function Task(props) {
 			
 			<div id="formatDateAndTrashCan">
 				<div id="formatDueDate">due date: {getDueDate()} &nbsp;&nbsp;</div>
+				<div id="formatDueDate">{getAddedDate()}</div>
 				<div id="formatTrashCan" onClick={e=>deleteTask(props.task)}>
 					<FontAwesomeIcon icon={faTrashCan} />
 				</div>
 				<div id="formatTrashCanAndBars">
 				    <div id="formatBars">
-					<FontAwesomeIcon icon={faBarsStaggered} />
+						<FontAwesomeIcon icon={faBarsStaggered} />
 			        </div>
 			    </div>
-			
-				
 			</div>
 			
 			

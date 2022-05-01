@@ -7,6 +7,11 @@ function Modal(props) {
     }
 
     function confirmHandler() {
+        var tempTask = task
+        tempTask.addedDate = new Date()
+        tempTask.filterState = 0
+        setTask(tempTask)
+
         props.onConfirm(task);
     }
 
