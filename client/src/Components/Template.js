@@ -1,10 +1,11 @@
 //import React from "react";
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import "./Template.css";
 import Modal from './Modal';
 import Backdrop from './Backdrop';
 import TaskList from './TaskList';
 import { InfoModal } from './InfoModal';
+import { saveTasks } from '../firebase';
 
 //info from https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
 export const TasksContext = createContext({
@@ -17,7 +18,7 @@ export const TasksContext = createContext({
 function Template(props) {
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [ infoModalIsOpen, setInfoModalIsOpen ] = useState([false, {}]);
-    const [tasks, setTasks] = useState([]);
+    const [tasks, baseSetTasks] = useState([]);
     const [dueDates, setDueDates] = useState([]); //had to create a copy of "tasks" array for the "Due date" filter
     const contextValue = {getTasks, setTasks, setTask, viewTask, deleteTask, setDueDate}
     const [newName, setNewName] = useState("");
@@ -32,6 +33,10 @@ function Template(props) {
     function setDueDate(index, value){
         dueDateSort[index] = value
         setTasks(dueDateSort)
+    }
+    function setTasks(tasks) {
+        saveTasks(tasks)
+        baseSetTasks(tasks)
     }
 
     function viewTask(task) {

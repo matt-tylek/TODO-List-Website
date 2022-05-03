@@ -18,6 +18,9 @@ import {
     collection,
     where,
     addDoc,
+    setDoc,
+    doc,
+    updateDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -107,6 +110,16 @@ const logout = async (then) => {
   }
 };
 
+const saveTasks = async (tasks) => {
+  const user = getAuth().currentUser
+  const collection = doc(db, 'users/' + user.uid)
+  updateDoc(collection, {
+    tasks: tasks
+  }).catch((error) => {
+    setDoc(collection, {tasks: tasks})
+  })
+};
+
 export {
   auth,
   db,
@@ -115,4 +128,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  saveTasks,
 };
