@@ -18,13 +18,12 @@ export const TasksContext = createContext({
 function Template(props) {
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [ infoModalIsOpen, setInfoModalIsOpen ] = useState([false, {}]);
-    const [tasks, baseSetTasks] = useState([]);
     const [dueDates, setDueDates] = useState([]); //had to create a copy of "tasks" array for the "Due date" filter
     const contextValue = {getTasks, setTasks, setTask, viewTask, deleteTask, setDueDate}
     const [newName, setNewName] = useState("");
     const [filter, setFilter] = useState("") //getter and setter
 
-    var newTasks = [...tasks]
+    var newTasks = [...props.tasks]
     var dueDateSort = [...dueDates]
     function setTask(index, value) {
         newTasks[index] = value
@@ -35,8 +34,7 @@ function Template(props) {
         setTasks(dueDateSort)
     }
     function setTasks(tasks) {
-        saveTasks(tasks)
-        baseSetTasks(tasks)
+        props.setTasks(tasks)
     }
 
     function viewTask(task) {
@@ -78,7 +76,7 @@ function Template(props) {
     //A helper function to add a single task since the process is not intuitive
     function addTask(task) {
         //have to add in a certain way so the state works correctly
-        setTasks(tasks.concat(task))
+        setTasks(props.tasks.concat(task))
     }
     function addDueDateTask(task){
         setDueDates(dueDateSort.concat(task))
@@ -86,6 +84,7 @@ function Template(props) {
 
     function getTasks(){
         var result = []
+        const tasks = props.tasks
 
         for(let i = 0; i < tasks.length; i++) {  //for each loop
             if(filter == "completed"){ //check if the filter is set to "Completed"

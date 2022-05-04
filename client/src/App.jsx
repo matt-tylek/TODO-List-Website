@@ -19,7 +19,7 @@ import Template from "./Components/Template";
 import Backdrop from "./Components/Backdrop";
 import Register from "./Components/Register.js";
 import { LoginModal } from "./Components/LoginModal";
-import {logout} from "./firebase";
+import {logout, saveTasks, getTasks} from "./firebase";
 
 
 /*
@@ -49,7 +49,8 @@ export default function App() {
   }, []);*/
 
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, baseSetUser] = useState(null);
+  const[tasks, baseSetTasks] = useState([]);
 
   function closeLoginModalHandler() {
     setLoginModalIsOpen(false);
@@ -62,7 +63,20 @@ export default function App() {
   function localLogout() {
     logout(() => setUser(null))
   }
- 
+
+  //Task related functions
+  function setTasks(tasks) {
+    saveTasks(tasks)
+    baseSetTasks(tasks)
+  }
+
+  function setUser(user) {
+    baseSetUser(user)
+    getTasks().then((result) => {
+      baseSetTasks(result.tasks)
+    })
+  }
+
   
  
   return (
@@ -77,7 +91,7 @@ export default function App() {
               <Route path="/Completed"> <CompletedTaskView></CompletedTaskView></Route>
               <Route path="/register"><Register></Register></Route>
               <Route path="/">
-              <Template className="template">
+              <Template className="template" tasks={tasks} setTasks={setTasks}>
         
 
                     {loginModalIsOpen && <LoginModal onCancel={closeLoginModalHandler}/>}
