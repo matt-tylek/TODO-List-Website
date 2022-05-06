@@ -33,9 +33,8 @@ export function Task(props) {
         //console.log("helelow")
         //console.log(props.task)
         //console.log(props.task.addedDate)
-	    console.log(props.task.filterState)
 		if(props.task.filterState == "1"){
-			return "added date: " + props.task.addedDate.toDateString()
+			return "added date: " + props.task.addedDate
 	    }
         else{
 			return ""

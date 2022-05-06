@@ -19,7 +19,7 @@ import Template from "./Components/Template";
 import Backdrop from "./Components/Backdrop";
 import Register from "./Components/Register.js";
 import { LoginModal } from "./Components/LoginModal";
-import {logout, saveTasks, getTasks} from "./firebase";
+import {logout, saveTasks, getTasksFromServer} from "./firebase";
 
 
 /*
@@ -51,6 +51,7 @@ export default function App() {
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
   const [user, baseSetUser] = useState(null);
   const[tasks, baseSetTasks] = useState([]);
+  const [filter, setFilter] = useState("")
 
   function closeLoginModalHandler() {
     setLoginModalIsOpen(false);
@@ -72,7 +73,7 @@ export default function App() {
 
   function setUser(user) {
     baseSetUser(user)
-    getTasks().then((result) => {
+    getTasksFromServer().then((result) => {
       if (result.tasks != null) {
         baseSetTasks(result.tasks)
       } else {
@@ -81,6 +82,48 @@ export default function App() {
     })
   }
 
+
+    function getTasks(){
+        var result = []
+
+        for(let i = 0; i < tasks.length; i++) {  //for each loop
+            if(filter == "completed"){ //check if the filter is set to "Completed"
+                tasks[i].filterState = "0"
+                if(tasks[i].checked){
+                    result.push(tasks[i])
+                }
+            }
+            else if(filter == "active"){ //check if the filter is set to "Active"
+                tasks[i].filterState = "0"
+                if(!tasks[i].checked){
+                    result.push(tasks[i])
+                }
+            }
+            else if(filter == "dueDate"){ //check if the filter is set to "Due date"
+                //"dueDates" is the same as "tasks" (had to create a new const and state so that the other filters are not messed up)
+                for(let j = 0; j <  dueDates.length-i-1; j++){ //bubble sort
+                    var date1 = new Date(dueDates[j + 1].date)
+                    var date2 = new Date(dueDates[j].date)
+                    if(date1 - date2 < 0){ //Negative -	date1 before date2
+                        var tmp = dueDates[j];
+                        dueDates[j] = dueDates[j + 1];
+                        dueDates[j + 1] = tmp;
+                    }
+                }
+                tasks[i].filterState = "0"
+                result.push(dueDates[i])
+            }
+            else if(filter == "addedDate"){
+                tasks[i].filterState = "1"
+                result.push(tasks[i])
+            }
+            else{ //check is the filter is set to "All"
+                tasks[i].filterState = "0"
+                result.push(tasks[i])
+            }
+        }
+        return result;
+    }
   
  
   return (
@@ -95,7 +138,7 @@ export default function App() {
               <Route path="/Completed"> <CompletedTaskView></CompletedTaskView></Route>
               <Route path="/register"><Register></Register></Route>
               <Route path="/">
-              <Template className="template" tasks={tasks} setTasks={setTasks}>
+              <Template className="template" getTasks={getTasks} setTasks={setTasks} filter={filter} setFilter={setFilter}>
         
 
                     {loginModalIsOpen && <LoginModal onCancel={closeLoginModalHandler}/>}

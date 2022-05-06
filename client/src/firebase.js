@@ -117,7 +117,7 @@ const saveTasks = async (tasks) => {
   })
 };
 
-const getTasks = async () => {
+const getTasksFromServer = async () => {
   const user = getAuth().currentUser
   if (user == null) {
     return {} 
@@ -140,5 +140,5 @@ export {
   sendPasswordReset,
   logout,
   saveTasks,
-  getTasks,
+  getTasksFromServer,
 };
