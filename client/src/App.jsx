@@ -73,7 +73,11 @@ export default function App() {
   function setUser(user) {
     baseSetUser(user)
     getTasks().then((result) => {
-      baseSetTasks(result.tasks)
+      if (result.tasks != null) {
+        baseSetTasks(result.tasks)
+      } else {
+        baseSetTasks([])
+      }
     })
   }
 
