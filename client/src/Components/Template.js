@@ -91,7 +91,7 @@ function Template(props) {
             <div className="row m-1 p-4">
                 <div className="col">
                     <div className="p-1 h1 text-primary text-center mx-auto display-inline-block">
-                        <u id="test">My Todo-s</u>
+                        <u id="test">My Tasks</u>
                     </div>
                 </div>
             </div>
