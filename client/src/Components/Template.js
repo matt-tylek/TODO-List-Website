@@ -90,8 +90,8 @@ function Template(props) {
             {/*info from https://freefrontend.com/bootstrap-to-do-lists/*/}
             <div className="row m-1 p-4">
                 <div className="col">
-                    <div className="p-1 h1 text-primary text-center mx-auto display-inline-block">
-                        <u id="test">My Tasks</u>
+                    <div className="p-1 h1 text-primary text-center mx-auto">
+                        My Tasks
                     </div>
                 </div>
             </div>
