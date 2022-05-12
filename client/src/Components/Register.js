@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../App";
 import {
   auth,
+  logInWithEmailAndPassword,
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "../firebase";
@@ -16,7 +17,9 @@ function Register() {
   const {user, setUser} = useContext(UserContext);
   const register = () => {
     if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, email, password, (u) => {setUser(u)});
+    registerWithEmailAndPassword(name, email, password, () => {
+      logInWithEmailAndPassword(email, password, (u) => {setUser(u)})
+    });
   };
   useEffect(() => {
 		if (user) {
@@ -58,7 +61,7 @@ function Register() {
         </button>
         <button
           className="register__btn register__google"
-          onClick={signInWithGoogle((u) => setUser(u))}
+          onClick={() => signInWithGoogle((u) => setUser(u))}
         >
           Register with Google
         </button>

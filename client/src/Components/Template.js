@@ -21,9 +21,8 @@ function Template(props) {
     const [dueDates, setDueDates] = useState([]); //had to create a copy of "tasks" array for the "Due date" filter
     const contextValue = {getTasks, setTasks, setTask, viewTask, deleteTask, setDueDate}
     const [newName, setNewName] = useState("");
-    const [filter, setFilter] = useState("") //getter and setter
 
-    var newTasks = [...props.tasks]
+    var newTasks = [...props.getTasks()]
     var dueDateSort = [...dueDates]
     function setTask(index, value) {
         newTasks[index] = value
@@ -76,55 +75,17 @@ function Template(props) {
     //A helper function to add a single task since the process is not intuitive
     function addTask(task) {
         //have to add in a certain way so the state works correctly
-        setTasks(props.tasks.concat(task))
+        setTasks(props.getTasks().concat(task))
     }
     function addDueDateTask(task){
         setDueDates(dueDateSort.concat(task))
     }
 
-    function getTasks(){
-        var result = []
-        const tasks = props.tasks
-
-        for(let i = 0; i < tasks.length; i++) {  //for each loop
-            if(filter == "completed"){ //check if the filter is set to "Completed"
-                tasks[i].filterState = "0"
-                if(tasks[i].checked){
-                    result.push(tasks[i])
-                }
-            }
-            else if(filter == "active"){ //check if the filter is set to "Active"
-                tasks[i].filterState = "0"
-                if(!tasks[i].checked){
-                    result.push(tasks[i])
-                }
-            }
-            else if(filter == "dueDate"){ //check if the filter is set to "Due date"
-                //"dueDates" is the same as "tasks" (had to create a new const and state so that the other filters are not messed up)
-                for(let j = 0; j <  dueDates.length-i-1; j++){ //bubble sort
-                    var date1 = new Date(dueDates[j + 1].date)
-                    var date2 = new Date(dueDates[j].date)
-                    if(date1 - date2 < 0){ //Negative -	date1 before date2
-                        var tmp = dueDates[j];
-                        dueDates[j] = dueDates[j + 1];
-                        dueDates[j + 1] = tmp;
-                    }
-                }
-                tasks[i].filterState = "0"
-                result.push(dueDates[i])
-            }
-            else if(filter == "addedDate"){
-                tasks[i].filterState = "1"
-                result.push(tasks[i])
-            }
-            else{ //check is the filter is set to "All"
-                tasks[i].filterState = "0"
-                result.push(tasks[i])
-            }
-        }
-        return result;
+    function getTasks() {
+        console.log(props.getTasks())
+        return props.getTasks()
     }
-    
+
     return ( 
         <TasksContext.Provider value={contextValue}>
             
@@ -164,7 +125,7 @@ function Template(props) {
             <div className="row m-1 p-3 px-5 justify-content-end">
                 <div className="col-auto d-flex align-items-center">
                     <label className="text-secondary my-2 pr-2 view-opt-label">Filter</label>
-                    <select className="custom-select custom-select-sm btn my-2" id="dropdowns" onChange={e => {setFilter(e.target.value); console.log(e.target.value)}}>
+                    <select className="custom-select custom-select-sm btn my-2" id="dropdowns" onChange={e => {props.setFilter(e.target.value); console.log(e.target.value)}}>
                         <option value="all" selected>All</option>
                         <option value="completed">Completed</option>
                         <option value="active">Active</option>

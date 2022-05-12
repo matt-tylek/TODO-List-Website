@@ -10,6 +10,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -60,7 +61,7 @@ const signInWithGoogle = async (then) => {
     }*/
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    //alert(err.message);
   }
 };
 
@@ -70,25 +71,20 @@ const logInWithEmailAndPassword = async (email, password, then) => {
     then(res.user);
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    //alert(err.message);
   }
 };
 
-const registerWithEmailAndPassword = async (name, email, password, user) => {
+const registerWithEmailAndPassword = async (name, email, password, then) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
-    then(res.user);
-    /*
-    const user = res.user;
-    await addDoc(collection(db, "users"), {
-      uid: user.uid,
-      name,
-      authProvider: "local",
-      email,
-    });*/
+    await updateProfile(res.user, {
+      displayName: name
+    })
+    then();
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    //alert(err.message);
   }
 };
 
@@ -121,14 +117,17 @@ const saveTasks = async (tasks) => {
   })
 };
 
-const getTasks = async () => {
+const getTasksFromServer = async () => {
   const user = getAuth().currentUser
+  if (user == null) {
+    return {} 
+  }
   const collection = doc(db, 'users/' + user.uid)
   const received = await getDoc(collection)
   if (received.exists()) {
     return received.data()
   } else {
-    return []
+    return {} 
   }
 }
 
@@ -141,5 +140,5 @@ export {
   sendPasswordReset,
   logout,
   saveTasks,
-  getTasks,
+  getTasksFromServer,
 };
