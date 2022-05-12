@@ -42,11 +42,7 @@ export default function NavbarPage(props) {
 
             
 
-            <MDBNavbarItem>
-              <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
-                My Account
-              </MDBNavbarLink>
-            </MDBNavbarItem>
+            
             
         
 
