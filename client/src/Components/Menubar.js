@@ -28,9 +28,8 @@ export default function NavbarPage(props) {
     <MDBNavbar expand='lg' id="formatMenubar">
       <MDBContainer fluid>
         <MDBNavbarBrand href='#'>Home</MDBNavbarBrand>
-      const myElement = <h1>ToDo List</h1>;
-      const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(myElement);
+      <h1>ToDo List</h1>
+  
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
