@@ -85,6 +85,7 @@ export default function App() {
 
     function getTasks(){
         var result = []
+        var dueDates = [...tasks]
 
         for(let i = 0; i < tasks.length; i++) {  //for each loop
             if(filter == "completed"){ //check if the filter is set to "Completed"

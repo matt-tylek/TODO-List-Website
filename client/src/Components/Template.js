@@ -18,19 +18,17 @@ export const TasksContext = createContext({
 function Template(props) {
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [ infoModalIsOpen, setInfoModalIsOpen ] = useState([false, {}]);
-    const [dueDates, setDueDates] = useState([]); //had to create a copy of "tasks" array for the "Due date" filter
     const contextValue = {getTasks, setTasks, setTask, viewTask, deleteTask, setDueDate}
     const [newName, setNewName] = useState("");
 
     var newTasks = [...props.getTasks()]
-    var dueDateSort = [...dueDates]
     function setTask(index, value) {
         newTasks[index] = value
         setTasks(newTasks)
     }
     function setDueDate(index, value){
-        dueDateSort[index] = value
-        setTasks(dueDateSort)
+        newTasks[index] = value
+        setTasks(newTasks)
     }
     function setTasks(tasks) {
         props.setTasks(tasks)
@@ -78,7 +76,7 @@ function Template(props) {
         setTasks(props.getTasks().concat(task))
     }
     function addDueDateTask(task){
-        setDueDates(dueDateSort.concat(task))
+        setTasks(props.getTasks().concat(task))
     }
 
     function getTasks() {

@@ -61,7 +61,7 @@ const signInWithGoogle = async (then) => {
     }*/
   } catch (err) {
     console.error(err);
-    //alert(err.message);
+    alert(err.message);
   }
 };
 
@@ -71,7 +71,7 @@ const logInWithEmailAndPassword = async (email, password, then) => {
     then(res.user);
   } catch (err) {
     console.error(err);
-    //alert(err.message);
+    alert(err.message);
   }
 };
 
@@ -84,7 +84,7 @@ const registerWithEmailAndPassword = async (name, email, password, then) => {
     then();
   } catch (err) {
     console.error(err);
-    //alert(err.message);
+    alert(err.message);
   }
 };
 
