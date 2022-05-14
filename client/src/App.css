@@ -31,6 +31,15 @@
   background-color: lightgray;
   color: #2c7ef6;
 }
+#centerTitle{
+  position: fixed;
+  left: 50%;
+  margin-left: -75px;
+}
+#helloUser{
+  display: inline;
+}
+
 
 /*.App-link {
   color: #61dafb;

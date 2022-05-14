@@ -68,11 +68,11 @@ export function Task(props) {
 				<div id="formatTrashCan" onClick={e=>deleteTask(props.task)}>
 					<FontAwesomeIcon icon={faTrashCan} />
 				</div>
-				<div id="formatTrashCanAndBars">
+				{/*<div id="formatTrashCanAndBars">
 				    <div id="formatBars">
 						<FontAwesomeIcon icon={faBarsStaggered} />
 			        </div>
-			    </div>
+			    </div>*/}
 			</div>
 			
 			

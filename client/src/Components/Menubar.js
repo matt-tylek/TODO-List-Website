@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import {styles, UserContext} from '../App'
+import "../App.css";
 import {
   MDBContainer,
   MDBNavbar,
@@ -28,7 +29,7 @@ export default function NavbarPage(props) {
     <MDBNavbar expand='lg' id="formatMenubar">
       <MDBContainer fluid>
         <MDBNavbarBrand href='#'>Home</MDBNavbarBrand>
-      <h1>ToDo List</h1>
+      <h1 id="centerTitle">ToDo List</h1>
   
 
         <MDBNavbarToggler
@@ -37,37 +38,23 @@ export default function NavbarPage(props) {
           aria-label='Toggle navigation'
           onClick={() => setShowBasic(!showBasic)}
         >
-          <MDBIcon icon='bars' fas />
+          
         </MDBNavbarToggler>
 
-       
+        {user
+          ? 
+          <div id="helloUser">
+            <div>
+              Welcome, {user.displayName} &nbsp;&nbsp;&nbsp;&nbsp;
+              <button color='primary' onClick={props.logout} type="button" class="btn btn-primary">Logout</button>
+            </div>
+          </div>
 
-            
-        
-            
-            
-        
-
-        
-          <MDBNavbarItem style={{ marginLeft: '5px'}}>
-            {user
-              ? <MDBNavbarItem>
-                  <MDBDropdown>
-                    <MDBDropdownToggle tag='a' className='lav-link' href='#'>
-                      {user.displayName}
-                    </MDBDropdownToggle>
-                    <MDBDropdownMenu>
-                      <MDBDropdownItem>
-                        <MDBBtn color='primary' onClick={props.logout}>Logout</MDBBtn>
-                      </MDBDropdownItem>
-                    </MDBDropdownMenu>
-                  </MDBDropdown>
-                </MDBNavbarItem>
-              : <MDBBtn color='primary' onClick={props.login}>Login</MDBBtn>
-            }
-          </MDBNavbarItem>
+          : <button color='primary' onClick={props.login} type="button" class="btn btn-primary">Login</button>
+        }
+          
       </MDBContainer>
-    </MDBNavbar>
+          </MDBNavbar>
   );
 }
 // Learned this through https://react-bootstrap.github.io/components/navbar/, modifiied to fit our needs however.
