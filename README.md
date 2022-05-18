@@ -14,6 +14,6 @@ cd client
 npm install
 ```
 
-## Devolpment
+## Development
 
 To make experiment with the database, create a new web app in firebase with a real time database and replace the api-keys in client/src/firebase.js
