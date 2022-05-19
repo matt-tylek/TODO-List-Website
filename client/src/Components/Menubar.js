@@ -1,3 +1,10 @@
+// Header comment
+// Author: Matthew Tylek
+// Program: ToDo list website that allows professionals and any user to organize and plan out their day. 
+// Purpose: Menubar that allows the user to login, go to home page, as well as represents the title of the teams project.
+// Date: Done in april, comments and finishing touches added 5/19/2022
+
+
 import React, { useContext, useState } from 'react';
 import {styles, UserContext} from '../App'
 import "../App.css";
