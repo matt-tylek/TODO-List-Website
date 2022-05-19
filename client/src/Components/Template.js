@@ -96,27 +96,30 @@ function Template(props) {
                 </div>
             </div>
             <div className="row m-1 p-3">
-                <div className="col col-11 mx-auto">
-                    <div className="row bg-white rounded shadow-sm p-2 add-todo-wrapper align-items-center justify-content-center">
-                        <div className="col">
-                            <input onChange={e => setNewName(e.target.value)} className="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Add new .." id="InputID"></input>
-                        </div>
-                        <div className="col-auto m-0 px-2 d-flex align-items-center">
-                            <label className="text-secondary my-2 p-0 px-1 view-opt-label due-date-label d-none">Due date not set</label>
-                            <i className="fa fa-calendar my-2 px-1 text-primary btn due-date-button" data-toggle="tooltip" data-placement="bottom" title="Set a Due date"></i>
-                            <i className="fa fa-calendar-times-o my-2 px-1 text-danger btn clear-due-date-button d-none" data-toggle="tooltip" data-placement="bottom" title="Clear Due date"></i>
-                        </div>
+                <div className="col col-11 mx-auto add-btn-container">
+                    <div className="row">
                         <div className="col-auto px-0 mx-0 mr-2">
-                            <div className='actions'>
-                                <button className="btn btn-primary" data-toggle="modal" onClick={addHandler}>Add</button>
-                            </div>
                             {modalIsOpen &&  <Modal onCancel={closeModalHandler} onConfirm={confirmModalHandler} />}
                             {modalIsOpen && <Backdrop onCancel={closeModalHandler}/>}
 
                             {infoModalIsOpen[0] && <InfoModal onClose={closeInfoModalHandler} task={infoModalIsOpen[1]}></InfoModal>}
                             {infoModalIsOpen[0] && <Backdrop onCancel={closeInfoModalHandler}></Backdrop>}
                         </div>
+
+                        <div className="col">
+                            <input onChange={e => setNewName(e.target.value)} className="add-input form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Add new .." id="InputID"></input>
+                        </div>
+
+                        <div className="col-auto m-0 px-2 d-flex align-items-center">
+                            <label className="text-secondary my-2 p-0 px-1 view-opt-label due-date-label d-none">Due date not set</label>
+                            <i className="fa fa-calendar my-2 px-1 text-primary btn due-date-button" data-toggle="tooltip" data-placement="bottom" title="Set a Due date"></i>
+                            <i className="fa fa-calendar-times-o my-2 px-1 text-danger btn clear-due-date-button d-none" data-toggle="tooltip" data-placement="bottom" title="Clear Due date"></i>
+                        </div>
+                        <div className='actions'>
+                            <button className="btn add-btn" data-toggle="modal" onClick={addHandler}>+</button>
+                        </div>
                     </div>
+                    <hr></hr>
                 </div>
             </div>
 

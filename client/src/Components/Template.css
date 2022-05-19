@@ -1,3 +1,39 @@
+.add-btn {
+  margin-right: 20px;
+  color: rgba(255, 255, 255, 0.681);
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.add-btn:hover {
+  color: white;
+}
+
+.add-btn-container > hr {
+  border-color: rgba(255, 255, 255, 0.63);
+  margin: 0;
+}
+
+.add-input {
+  color: rgba(255, 255, 255, 0.833);
+  border-radius: 0;
+  font-size: 1.5rem;
+}
+.add-input:focus {
+  color:white;
+  outline: none;
+}
+
+.add-btn-container>div:hover {
+  background-color: rgba(0, 0, 0, 0.144);
+  border-radius: 10px;
+}
+
+.add-btn-container:focus-within {
+  background-color: rgba(0, 0, 0, 0.21);
+  border-radius: 10px;
+}
+
 #flexCheckDefault{
   margin-top: 15px;
 }
