@@ -35,7 +35,7 @@ export default function NavbarPage(props) {
   return (
     <MDBNavbar expand='lg' id="formatMenubar">
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>Home</MDBNavbarBrand>
+        <MDBNavbarBrand href='/'>Home</MDBNavbarBrand>
       <h1 id="centerTitle">ToDo List</h1>
   
 
